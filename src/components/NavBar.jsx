@@ -15,7 +15,7 @@ const NavBar = () => {
       <Tabs isFitted variant="enclosed">
         <TabList mb="1em">
           <Tab>
-            <Link to="/">
+            <Link to="/home">
               <FaHome />
             </Link>
           </Tab>
@@ -25,7 +25,7 @@ const NavBar = () => {
             </Link>
           </Tab>
           <Tab>
-            <Link to="/mysalary">
+            <Link to="/mySalary">
               <FaDollarSign />
             </Link>
           </Tab>
