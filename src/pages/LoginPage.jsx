@@ -48,12 +48,14 @@ const LoginPage = () => {
           Login
         </Text>
         <VStack
+          maxWidth="75%"
           boxShadow="md"
           rounded="lg"
-          p={10}
+          px={10}
+          py={5}
           bg="#D6CDA4"
-          gap={3}
-          mx={10}
+          gap={2}
+          mx="auto"
           mb={3}
         >
           <FormControl isRequired>
@@ -78,11 +80,7 @@ const LoginPage = () => {
           </FormControl>
           <HStack width="100%" mt={5}>
             <Spacer />
-            <Button
-              color="white"
-              bg="#3D8361"
-              type="submit"
-            >
+            <Button color="white" bg="#3D8361" type="submit">
               Submit
             </Button>
           </HStack>
