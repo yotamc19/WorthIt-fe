@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import NotificationsPage from "./pages/NotificationsPage";
+import SalaryCalculator from "./pages/SalaryCalculator"
 import MySalaryPage from "./pages/MySalaryPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
@@ -38,6 +39,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path="/home" element={<HomePage />} />
               <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/calculator" element={<SalaryCalculator />} />
               <Route path="/mySalary" element={<MySalaryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/settings" element={<SettingsPage />} />
