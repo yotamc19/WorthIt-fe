@@ -11,9 +11,9 @@ import {
 
 const NavBar = () => {
   return (
-    <div>
-      <Tabs isFitted variant="enclosed">
-        <TabList mb="1em">
+    <>
+      <Tabs bg="white" w="100%" bottom="0" position="fixed" isFitted variant="enclosed">
+        <TabList>
           <Tab>
             <Link to="/home">
               <FaHome />
@@ -41,7 +41,7 @@ const NavBar = () => {
           </Tab>
         </TabList>
       </Tabs>
-    </div>
+    </>
   );
 };
 
