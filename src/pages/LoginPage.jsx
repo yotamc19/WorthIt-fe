@@ -45,7 +45,7 @@ const LoginPage = () => {
   return (
     <div>
       <form onSubmit={handleLogIn}>
-        <Text fontWeight="600" mb={5} textAlign="center" fontSize="3xl">
+        <Text className="main-title" fontWeight="600" mb={5} textAlign="center" fontSize="3xl">
           Login
         </Text>
         <VStack
