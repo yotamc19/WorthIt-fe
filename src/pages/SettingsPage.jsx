@@ -89,7 +89,7 @@ const SettingsPage = () => {
           mx="auto"
           mb={3}
         >
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel htmlFor="firstName">First Name:</FormLabel>
             <Input
               bg="white"
@@ -100,7 +100,7 @@ const SettingsPage = () => {
               defaultValue={loggedUser.firstName}
             />
           </FormControl>
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel htmlFor="lastName">Last Name:</FormLabel>
             <Input
               bg="white"
@@ -111,7 +111,7 @@ const SettingsPage = () => {
               defaultValue={loggedUser.lastName}
             />
           </FormControl>
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel htmlFor="email">Email:</FormLabel>
             <Input
               bg="white"
@@ -122,7 +122,7 @@ const SettingsPage = () => {
               defaultValue={loggedUser.email}
             />
           </FormControl>
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel htmlFor="password">Password:</FormLabel>
             <Input
               bg="white"
@@ -130,7 +130,6 @@ const SettingsPage = () => {
               type="password"
               placeholder="Choose your password"
               onChange={handleTextChange}
-              defaultValue={loggedUser.password}
             />
           </FormControl>
           <HStack width="100%" mt={5}>

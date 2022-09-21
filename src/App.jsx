@@ -9,14 +9,13 @@ import MySalaryPage from "./pages/MySalaryPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NavBar from "./components/NavBar";
+import WorthItBanner from "./components/WorthItBanner";
 import { useBigContext } from "./contexts/BigContexts";
 import { useEffect } from "react";
 import axios from "axios";
 import PostPage from "./pages/PostPage";
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import PostBubble from "./components/PostBubble";
-import { Circle, HStack } from "@chakra-ui/react";
-import { PlusSquareIcon } from "@chakra-ui/icons";
 
 const App = () => {
   const { loggedUser, isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
@@ -42,6 +41,7 @@ const App = () => {
 
   return (
     <div id="app">
+      <WorthItBanner />
       {isAdmin ? <PostBubble /> : ''}
       <BrowserRouter>
         {isLoggedIn ? <NavBar /> : ''}

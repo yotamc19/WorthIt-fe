@@ -8,8 +8,8 @@ const HomePage = () => {
   console.log(loggedUser);
   return (
     <div>
-        <Text>
-            Welcome, {loggedUser.firstName}
+        <Text textAlign="center" >
+            Welcome, {loggedUser.firstName} {loggedUser.lastName}
         </Text>
       <Image
         src="../images/Logo-big.png"
