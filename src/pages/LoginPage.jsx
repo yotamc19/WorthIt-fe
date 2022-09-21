@@ -31,6 +31,7 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
+      console.log(data);
       if (data) {
         // decide which page to navigate to
         setIsLoggedIn(true);

@@ -10,8 +10,23 @@ import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NavBar from "./components/NavBar";
 import BigContextProvider from "./contexts/BigContexts";
+import { useEffect } from "react";
+import axios from "axios";
 
 const App = () => {
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const user = await axios.get(`http://localhost:8080/user/currentUser`, { withCredentials: true });
+      return user;
+    }
+
+    // const token = document.cookie.substring(6);
+    getCurrentUser()
+      .then((user) => { console.log(user) })
+      .catch((err) => { console.log(err) });
+
+  }, [])
+
   return (
     <BigContextProvider>
       <div id="app">
