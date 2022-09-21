@@ -12,8 +12,11 @@ import {
   VStack,
   Text,
 } from "@chakra-ui/react";
+import { useBigContext } from "../contexts/BigContexts";
 
 const LoginPage = () => {
+  const { setIsLoggedIn, setLoggedUser } = useBigContext();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
@@ -30,8 +33,9 @@ const LoginPage = () => {
       );
       if (data) {
         // decide which page to navigate to
+        setIsLoggedIn(true);
+        setLoggedUser(data);
         navigate("/home")
-        // set context for current user
       }
     } catch (error) {
       console.log(error);
