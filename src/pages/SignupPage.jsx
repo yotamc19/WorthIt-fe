@@ -7,6 +7,7 @@ import {
   HStack,
   VStack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ import axios from "axios";
 import { useBigContext } from "../contexts/BigContexts";
 
 const SignupPage = () => {
+  const toast = useToast();
   const { setIsLoggedIn, setLoggedUser } = useBigContext();
 
   const [userInfo, setUserInfo] = useState({});
@@ -34,6 +36,13 @@ const SignupPage = () => {
         }
       );
       if (data) {
+        toast({
+          position: "top",
+          title: "Sign up successful!",
+          status: "success",
+          duration: 1500,
+          isClosable: true,
+        })
         setIsLoggedIn(true);
         setLoggedUser(data);
         navigate("/home");

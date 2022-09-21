@@ -11,10 +11,13 @@ import {
   HStack,
   VStack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useBigContext } from "../contexts/BigContexts";
 
 const LoginPage = () => {
+  const toast = useToast();
+
   const { setIsLoggedIn, setLoggedUser } = useBigContext();
 
   const [email, setEmail] = useState("");
@@ -34,9 +37,16 @@ const LoginPage = () => {
       console.log(data);
       if (data) {
         // decide which page to navigate to
+        toast({
+          position: "top",
+          title: "Login successful!",
+          status: "success",
+          duration: 1500,
+          isClosable: true,
+        });
         setIsLoggedIn(true);
         setLoggedUser(data);
-        navigate("/home")
+        navigate("/home");
       }
     } catch (error) {
       console.log(error);
@@ -45,7 +55,13 @@ const LoginPage = () => {
   return (
     <div>
       <form onSubmit={handleLogIn}>
-        <Text className="main-title" fontWeight="600" mb={5} textAlign="center" fontSize="3xl">
+        <Text
+          className="main-title"
+          fontWeight="600"
+          mb={5}
+          textAlign="center"
+          fontSize="3xl"
+        >
           Login
         </Text>
         <VStack
@@ -86,7 +102,13 @@ const LoginPage = () => {
             </Button>
           </HStack>
         </VStack>
-        <Text textAlign="center">New user? Click <strong><Link to={"/signup"}>here</Link></strong> to register</Text>
+        <Text textAlign="center">
+          New user? Click{" "}
+          <strong>
+            <Link to={"/signup"}>here</Link>
+          </strong>{" "}
+          to register
+        </Text>
       </form>
     </div>
   );
