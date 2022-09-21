@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar";
 import BigContextProvider from "./contexts/BigContexts";
 import { useEffect } from "react";
 import axios from "axios";
+import WorthItBanner from "./components/WorthItBanner";
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const App = () => {
       <div id="app">
         <BrowserRouter>
           <NavBar />
+          <WorthItBanner />
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
