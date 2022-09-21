@@ -51,7 +51,7 @@ const SettingsPage = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/user/${loggedUser.id}`,
+        `http://localhost:8080/user/`,
         userInfo,
         {
           withCredentials: true,
@@ -60,7 +60,6 @@ const SettingsPage = () => {
       if (data) {
         setIsLoggedIn(true);
         setLoggedUser(data);
-        navigate("/settings");
       }
     } catch (err) {
       console.log(err);
@@ -134,7 +133,7 @@ const SettingsPage = () => {
           </FormControl>
           <HStack width="100%" mt={5}>
             <Spacer />
-            <Button color="white" bg="#3D8361" type="submit">
+            <Button onClick={() => alert("User updated!")} color="white" bg="#3D8361" type="submit">
               Update
             </Button>
             {cookie && (
