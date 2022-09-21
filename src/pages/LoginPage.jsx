@@ -17,8 +17,7 @@ import { useBigContext } from "../contexts/BigContexts";
 
 const LoginPage = () => {
   const toast = useToast();
-
-  const { setIsLoggedIn, setLoggedUser } = useBigContext();
+  const { setIsLoggedIn, setLoggedUser, setIsAdmin } = useBigContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +33,6 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
       if (data) {
         // decide which page to navigate to
         toast({
@@ -46,7 +44,8 @@ const LoginPage = () => {
         });
         setIsLoggedIn(true);
         setLoggedUser(data);
-        navigate("/home");
+        setIsAdmin(data.isAdmin)
+        navigate("/home")
       }
     } catch (error) {
       console.log(error);

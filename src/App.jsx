@@ -19,7 +19,7 @@ import PostBubble from "./components/PostBubble";
 import SalaryCalculator from "./pages/SalaryCalculator";
 
 const App = () => {
-  const { loggedUser, isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
+  const { isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -43,8 +43,8 @@ const App = () => {
   return (
     <div id="app">
       <WorthItBanner />
-      {isAdmin ? <PostBubble /> : ''}
       <BrowserRouter>
+        {isAdmin ? <PostBubble /> : ''}
         {isLoggedIn ? <NavBar /> : ''}
         <Routes>
           <Route path="/" element={isLoggedIn ? '' : <LoginPage />} />
@@ -57,7 +57,7 @@ const App = () => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route element={<AdminPrivateRoute />}>
-              <Route path='/post' element={<PostPage />} />
+              <Route path='/upload' element={<PostPage />} />
             </Route>
           </Route>
         </Routes>

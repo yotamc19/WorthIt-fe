@@ -20,7 +20,11 @@ body,
 }
 
 .bubble {
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   right: 20px;
+}
+
+.post {
+  max-height: 150px;
 }
