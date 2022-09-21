@@ -41,6 +41,13 @@ const SettingsPage = () => {
         }
       );
       if (data) {
+        toast({
+            position: "top",
+            title: "User logged out.",
+            status: "error",
+            duration: 1500,
+            isClosable: true,
+          });
         setIsLoggedIn(false);
         setLoggedUser({});
         navigate("/");
