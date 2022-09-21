@@ -18,7 +18,7 @@ import { useBigContext } from "../contexts/BigContexts";
 const SettingsPage = () => {
   const toast = useToast();
 
-  const { setIsLoggedIn, setLoggedUser, loggedUser } = useBigContext();
+  const { setIsLoggedIn, setLoggedUser, loggedUser, setIsAdmin } = useBigContext();
 
   const cookie = document.cookie;
 
@@ -50,6 +50,7 @@ const SettingsPage = () => {
           });
         setIsLoggedIn(false);
         setLoggedUser({});
+        setIsAdmin(false);
         navigate("/");
       }
     } catch (err) {

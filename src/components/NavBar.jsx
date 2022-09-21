@@ -10,10 +10,6 @@ import {
 } from "react-icons/fa";
 
 const NavBar = () => {
-  const handleNotificationsClick = async () => {
-
-  }
-
   return (
     <>
       <Tabs bg="white" w="100%" bottom="0" position="fixed" isFitted variant="enclosed">
