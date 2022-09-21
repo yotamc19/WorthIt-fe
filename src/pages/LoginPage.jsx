@@ -85,6 +85,7 @@ const LoginPage = () => {
             </Button>
           </HStack>
         </VStack>
+        <Text textAlign="center">New user? Click <strong><Link to={"/signup"}>here</Link></strong> to register</Text>
       </form>
     </div>
   );
