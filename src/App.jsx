@@ -16,6 +16,7 @@ import axios from "axios";
 import PostPage from "./pages/PostPage";
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import PostBubble from "./components/PostBubble";
+import SalaryCalculator from "./pages/SalaryCalculator";
 
 const App = () => {
   const { loggedUser, isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
@@ -51,6 +52,7 @@ const App = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/calculator" element={<SalaryCalculator/>} />
             <Route path="/mySalary" element={<MySalaryPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />

@@ -25,7 +25,7 @@ const NavBar = () => {
             </Link>
           </Tab>
           <Tab>
-            <Link to="/mySalary">
+            <Link to="/calculator">
               <FaDollarSign />
             </Link>
           </Tab>
