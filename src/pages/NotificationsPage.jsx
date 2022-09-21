@@ -9,7 +9,9 @@ const NotificationsPage = () => {
     useEffect(() => {
         const getAllPosts = async () => {
             const res = await axios.get('http://localhost:8080/posts', { withCredentials: true });
-            setPostsList(res.data);
+            let arr = res.data;
+            arr.reverse();
+            setPostsList(arr);
         }
         getAllPosts()
             .catch((err) => { console.log(err) });
