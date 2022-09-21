@@ -8,6 +8,7 @@ export const useBigContext = () => {
 }
 
 const BigContextProvider = ({ children }) => {
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     //loggedUser keeps all the data about the currently logged user
     const [loggedUser, setLoggedUser] = useState({
@@ -20,7 +21,7 @@ const BigContextProvider = ({ children }) => {
     });
 
     return (
-        <BigContext.Provider value={{ isLoggedIn, setIsLoggedIn, loggedUser, setLoggedUser }} >
+        <BigContext.Provider value={{ isLoggedIn, setIsLoggedIn, loggedUser, setLoggedUser, isAdmin, setIsAdmin }} >
             {children}
         </BigContext.Provider >
     )

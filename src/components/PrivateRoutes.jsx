@@ -1,9 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useBigContext } from '../contexts/BigContexts';
 
 const PrivateRoutes = () => {
+    const { isLoggedIn } = useBigContext();
 
     return (
-        true ? <Outlet /> : <Navigate to='/' />
+        isLoggedIn ? <Outlet /> : <Navigate to='/' />
     )
 }
 

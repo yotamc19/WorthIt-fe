@@ -1,5 +1,5 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import PrivateRoutes from "./components/PrivateRoutes";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -9,43 +9,58 @@ import MySalaryPage from "./pages/MySalaryPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NavBar from "./components/NavBar";
-import BigContextProvider from "./contexts/BigContexts";
+import { useBigContext } from "./contexts/BigContexts";
 import { useEffect } from "react";
 import axios from "axios";
+import PostPage from "./pages/PostPage";
+import AdminPrivateRoute from './components/AdminPrivateRoute';
+import PostBubble from "./components/PostBubble";
+import { Circle, HStack } from "@chakra-ui/react";
+import { PlusSquareIcon } from "@chakra-ui/icons";
 
 const App = () => {
+  const { loggedUser, isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
+
   useEffect(() => {
     const getCurrentUser = async () => {
       const user = await axios.get(`http://localhost:8080/user/currentUser`, { withCredentials: true });
-      return user;
+      const { data } = user;
+      if (data) {
+        setIsLoggedIn(true);
+        setLoggedUser(data);
+        setIsAdmin(data.isAdmin);
+      } else {
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+      }
     }
 
-    // const token = document.cookie.substring(6);
     getCurrentUser()
-      .then((user) => { console.log(user) })
       .catch((err) => { console.log(err) });
 
   }, [])
 
   return (
-    <BigContextProvider>
-      <div id="app">
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route element={<PrivateRoutes />}>
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/mySalary" element={<MySalaryPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/settings" element={<SettingsPage />} />
+    <div id="app">
+      {isAdmin ? <PostBubble /> : ''}
+      <BrowserRouter>
+        {isLoggedIn ? <NavBar /> : ''}
+        <Routes>
+          <Route path="/" element={isLoggedIn ? '' : <LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/mySalary" element={<MySalaryPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route element={<AdminPrivateRoute />}>
+              <Route path='/post' element={<PostPage />} />
             </Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </BigContextProvider>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
