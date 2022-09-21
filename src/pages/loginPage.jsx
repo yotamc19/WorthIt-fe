@@ -1,7 +1,91 @@
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+
+import {
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+  Spacer,
+  HStack,
+  VStack,
+  Text,
+} from "@chakra-ui/react";
+
 const LoginPage = () => {
-    return <div>
-        login
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+
+  const handleLogIn = async (e) => {
+    try {
+      e.preventDefault();
+      const { data } = await axios.post(
+        "http://localhost:8080/user/login",
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      );
+      if (data) {
+        // decide which page to navigate to
+        navigate("/home")
+        // set context for current user
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div>
+      <form onSubmit={handleLogIn}>
+        <Text fontWeight="600" mb={5} textAlign="center" fontSize="3xl">
+          Login
+        </Text>
+        <VStack
+          boxShadow="md"
+          rounded="lg"
+          p={10}
+          bg="#D6CDA4"
+          gap={3}
+          mx={10}
+          mb={3}
+        >
+          <FormControl isRequired>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
+              bg="white"
+              id="email"
+              type="email"
+              placeholder="Your email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              bg="white"
+              id="password"
+              type="password"
+              placeholder="Your password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <HStack width="100%" mt={5}>
+            <Spacer />
+            <Button
+              color="white"
+              bg="#3D8361"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </HStack>
+        </VStack>
+      </form>
     </div>
-}
+  );
+};
 
 export default LoginPage;
