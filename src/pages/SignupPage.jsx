@@ -61,7 +61,7 @@ const SignupPage = () => {
           px={10}
           py={5}
           bg="#D6CDA4"
-          gap={2}
+          gap={1}
           mx="auto"
           mb={3}
         >

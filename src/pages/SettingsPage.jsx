@@ -8,6 +8,7 @@ import {
   VStack,
   Text,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +16,8 @@ import axios from "axios";
 import { useBigContext } from "../contexts/BigContexts";
 
 const SettingsPage = () => {
+  const toast = useToast();
+
   const { setIsLoggedIn, setLoggedUser, loggedUser } = useBigContext();
 
   const cookie = document.cookie;
@@ -32,7 +35,7 @@ const SettingsPage = () => {
     try {
       const { data } = await axios.get(
         "http://localhost:8080/user/logout",
-        
+
         {
           withCredentials: true,
         }
@@ -58,6 +61,13 @@ const SettingsPage = () => {
         }
       );
       if (data) {
+        toast({
+          position: "top",
+          title: "User updated!",
+          status: "success",
+          duration: 1500,
+          isClosable: true,
+        });
         setIsLoggedIn(true);
         setLoggedUser(data);
       }
@@ -133,12 +143,18 @@ const SettingsPage = () => {
           </FormControl>
           <HStack width="100%" mt={5}>
             <Spacer />
-            <Button onClick={() => alert("User updated!")} color="white" bg="#3D8361" type="submit">
+            <Button color="white" bg="#3D8361" type="submit">
               Update
             </Button>
             {cookie && (
               <Flex>
-                <Button me={1} color="white" bg="red" fontWeight={300} onClick={handleSignOut}>
+                <Button
+                  me={1}
+                  color="white"
+                  bg="red"
+                  fontWeight={300}
+                  onClick={handleSignOut}
+                >
                   Logout
                 </Button>
               </Flex>
