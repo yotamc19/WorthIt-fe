@@ -15,11 +15,9 @@ import axios from "axios";
 import PostPage from "./pages/PostPage";
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import PostBubble from "./components/PostBubble";
-import { Circle, HStack } from "@chakra-ui/react";
-import { PlusSquareIcon } from "@chakra-ui/icons";
 
 const App = () => {
-  const { loggedUser, isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
+  const { isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -42,8 +40,8 @@ const App = () => {
 
   return (
     <div id="app">
-      {isAdmin ? <PostBubble /> : ''}
       <BrowserRouter>
+        {isAdmin ? <PostBubble /> : ''}
         {isLoggedIn ? <NavBar /> : ''}
         <Routes>
           <Route path="/" element={isLoggedIn ? '' : <LoginPage />} />
@@ -55,7 +53,7 @@ const App = () => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route element={<AdminPrivateRoute />}>
-              <Route path='/post' element={<PostPage />} />
+              <Route path='/upload' element={<PostPage />} />
             </Route>
           </Route>
         </Routes>

@@ -5,7 +5,6 @@ import { useBigContext } from "../contexts/BigContexts";
 const HomePage = () => {
   const {  loggedUser } = useBigContext();
   const cookie = document.cookie;
-  console.log(loggedUser);
   return (
     <div>
         <Text>

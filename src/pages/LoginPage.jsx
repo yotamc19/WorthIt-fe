@@ -15,7 +15,7 @@ import {
 import { useBigContext } from "../contexts/BigContexts";
 
 const LoginPage = () => {
-  const { setIsLoggedIn, setLoggedUser } = useBigContext();
+  const { setIsLoggedIn, setLoggedUser, setIsAdmin } = useBigContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,11 +31,11 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
       if (data) {
         // decide which page to navigate to
         setIsLoggedIn(true);
         setLoggedUser(data);
+        setIsAdmin(data.isAdmin)
         navigate("/home")
       }
     } catch (error) {
