@@ -41,7 +41,7 @@ const HomePage = () => {
         <Modal.Body>
         <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>How can WorthIt assist me in determining my salary expectations?</Accordion.Header>
+        <Accordion.Header>How can WorthIt help me to figure out my salary expectations?</Accordion.Header>
         <Accordion.Body style={{textAlign: "justify"}}><small>
         WorthIt uses a Machine Learning Model, which is constantly updated and trained with data on salaries and other related parameters. The data for the model is harvested from multiple and reliable resources, and 
           also comes directly — and discretely — from WorthIt users who give their consent to share it with the app. 
@@ -58,7 +58,7 @@ const HomePage = () => {
       <Accordion.Item eventKey="2">
         <Accordion.Header>So am I the product? 🤔</Accordion.Header>
         <Accordion.Body style={{textAlign: "justify"}}><small>
-        No, you are the app's co-producer! your salary, and other work-related info, will remain hidden and protected from employers. It will only serve as one entry among tens of thousands, for the app's ML model to feed upon, and therefore, serve you with you up-to-date predictions next time you use it!
+        No, you are the app's co-producer! your salary, and other work-related info, will remain hidden and protected from employers. It will only serve as one entry among tens of thousands for the app's ML model to feed upon, and therefore, serve you with up-to-date predictions next time you use it!
         </small></Accordion.Body>
       </Accordion.Item>
     </Accordion>
