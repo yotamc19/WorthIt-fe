@@ -42,7 +42,7 @@ const PostBubble = () => {
 
     return (
         <>
-            <Circle size='50px' bg='green' color='white' onClick={onOpen} className='bubble'>
+            <Circle zIndex={1} size='50px' bg='green' color='white' onClick={onOpen} className='bubble'>
                 <PlusSquareIcon />
             </Circle>
             <Modal isOpen={isOpen} onClose={onClose} size='xs'

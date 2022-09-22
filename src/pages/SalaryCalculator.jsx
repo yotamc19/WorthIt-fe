@@ -1,7 +1,15 @@
-import { Box, Button, Text, VStack } from "@chakra-ui/react";
+// import Form from "react-bootstrap/Form";
+import {
+  Box,
+  Button,
+  Text,
+  VStack,
+  FormLabel,
+  FormControl,
+  Select,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import Form from "react-bootstrap/Form";
 import SearchableJobSelect from "../components/SearchableJobSelect/SearchableJobSelect";
 import SearchableJobLocation from "../components/SearchableLocationSelect/SearchableLocationSelect";
 
@@ -19,7 +27,7 @@ const SalaryCalculator = () => {
 
   const getJobTitle = (selectedOption) => {
     if (selectedOption !== null) {
-      const jobTitleUnspaced = (selectedOption.value).replace(/ /g, "%20");
+      const jobTitleUnspaced = selectedOption.value.replace(/ /g, "%20");
       setJobTitle(jobTitleUnspaced);
     }
   };
@@ -40,38 +48,45 @@ const SalaryCalculator = () => {
       <Text
         className="main-title"
         fontWeight="600"
-        mb={5}
+        mt={-2}
+        mb={2}
         textAlign="center"
-        fontSize="3xl"
+        fontSize="2xl"
       >
         Salary calculator
       </Text>
       <VStack px={10}>
-        <Form onSubmit={handleClick}>
-          <Form.Group className="mb-3">
-            <Form.Label>Job Title</Form.Label>
+        <form onSubmit={handleClick}>
+          <FormControl mb={1}>
+            <FormLabel fontSize="sm">Job Title</FormLabel>
             <SearchableJobSelect getJobTitle={getJobTitle} />
-          </Form.Group>
+          </FormControl>
 
-          <Form.Label>Experience Level</Form.Label>
-          <Form.Select
-            aria-label="experience level"
-            value={expLevel}
-            onChange={(e) => setExpLevel(e.target.value)}
-          >
-            <option value="EN">Junior</option>
-            <option value="MI">Intermediate</option>
-            <option value="SE">Senior</option>
-            <option value="EX">Executive</option>
-          </Form.Select>
+          <FormControl>
+            <FormLabel fontSize="sm">Experience Level</FormLabel>
+            <Select
+              mb={1}
+              bg="white"
+              aria-label="experience level"
+              value={expLevel}
+              onChange={(e) => setExpLevel(e.target.value)}
+            >
+              <option value="EN">Junior</option>
+              <option value="MI">Intermediate</option>
+              <option value="SE">Senior</option>
+              <option value="EX">Executive</option>
+            </Select>
+          </FormControl>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Company Location</Form.Label>
+          <FormControl mb={1}>
+            <FormLabel fontSize="sm">Company Location</FormLabel>
             <SearchableJobLocation getJobLocation={getJobLocation} />
-          </Form.Group>
+          </FormControl>
 
-          <Form.Label>Company Size</Form.Label>
-          <Form.Select
+          <FormLabel fontSize="sm">Company Size</FormLabel>
+          <Select
+            mb={1}
+            bg="white"
             aria-label="company size"
             value={companySize}
             onChange={(e) => setCompanySize(e.target.value)}
@@ -80,10 +95,12 @@ const SalaryCalculator = () => {
             <option value="S">Less than 50 employees</option>
             <option value="M">50 to 250 employees</option>
             <option value="L">More than 250 employees</option>
-          </Form.Select>
+          </Select>
 
-          <Form.Label>Employment Type</Form.Label>
-          <Form.Select
+          <FormLabel fontSize="sm">Employment Type</FormLabel>
+          <Select
+            mb={1}
+            bg="white"
             aria-label="employment type"
             value={employType}
             onChange={(e) => setEmployType(e.target.value)}
@@ -92,10 +109,13 @@ const SalaryCalculator = () => {
             <option value="PT">Part-time</option>
             <option value="CT">Contract Work</option>
             <option value="FL">Freelance</option>
-          </Form.Select>
+          </Select>
 
-          <Form.Label>Remote Work Ratio</Form.Label>
-          <Form.Select
+          <FormLabel fontSize="sm">Remote Work Ratio</FormLabel>
+          <Select
+            required
+            mb={1}
+            bg="white"
             aria-label="company size"
             value={parseInt(remoteRatio)}
             onChange={(e) => setRemoteRatio(e.target.value)}
@@ -103,11 +123,13 @@ const SalaryCalculator = () => {
             <option value="50">Partially remote (20-80%)</option>
             <option value="100">Fully remote (more than 80%)</option>
             <option value="0">No remote work (less than 20%)</option>
-          </Form.Select>
-          <Box width='100%' display='flex' justifyContent='center'>
-            <Button colorScheme='green' type='submit'>Calculate</Button>
+          </Select>
+          <Box width="100%" display="flex" justifyContent="center">
+            <Button mt={4} colorScheme="green" type="submit">
+              Calculate
+            </Button>
           </Box>
-        </Form>
+        </form>
       </VStack>
     </div>
   );

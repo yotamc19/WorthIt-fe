@@ -18,7 +18,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Tabs bg="white" w="100%" bottom="0" position="fixed" isFitted variant="enclosed">
+      <Tabs zIndex={1} bg="white" w="100%" bottom="0" position="fixed" isFitted variant="enclosed">
         <TabList>
           <Tab>
             <Link to="/home">
