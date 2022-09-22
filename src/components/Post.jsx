@@ -29,7 +29,7 @@ const Post = ({ postId, heading, text, createdDate }) => {
             onClick={handleClick}
         >
             <Box display='flex' justifyContent='space-between'>
-                <Text fontSize='2xl' fontWeight='700' noOfLines={1}>{heading}</Text>
+                <Text fontSize='1xl' fontWeight='700' noOfLines={1}>{heading}</Text>
                 <Text fontSize='xs'>{days < 1 ? `${hours}h` : `${days}d`}</Text>
             </Box>
             <Text fontSize='md' noOfLines={3}>{text}</Text>

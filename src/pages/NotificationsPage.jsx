@@ -20,10 +20,6 @@ const NotificationsPage = () => {
             .catch((err) => { console.log(err) });
     }, []);
 
-    const handlePostClick = () => {
-        navigate('/post');
-    }
-
     return (
         <div>
             <Text

@@ -4,9 +4,11 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHea
 import { Button, Flex, FormControl, FormLabel, HStack, Input, Spacer, Text, Textarea, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import { useBigContext } from "../contexts/BigContexts";
 
 const PostBubble = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { setPostsList } = useBigContext();
 
     const toast = useToast();
 
@@ -23,10 +25,14 @@ const PostBubble = () => {
     const handlePost = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:8080/posts', {
+            await axios.post('http://localhost:8080/posts', {
                 heading: postInfo.heading,
                 text: postInfo.text,
             }, { withCredentials: true });
+            const res = await axios.get('http://localhost:8080/posts', { withCredentials: true });
+            let arr = res.data;
+            arr.reverse();
+            setPostsList(arr);
             onClose();
             toast({
                 position: "top",
