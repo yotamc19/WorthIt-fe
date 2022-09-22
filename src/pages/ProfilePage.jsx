@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { useNavigate } from " react-router-dom";
 import {
   List,
   ListItem,
@@ -45,9 +46,22 @@ const ProfilePage = () => {
       setJobTitle(jobTitleUnspaced);
     }
   };
+  const toast = useToast();
+  // let navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast({
+      position: "top",
+      title: "Update successful!",
+      status: "success",
+      duration: 1500,
+      isClosable: true,
+    });
+    // navigate("")
+  };
 
   return (
-    <div maxwidth="75%">
+    <div maxwidth="75%" className="mb-5">
       <Text
         className="main-title"
         fontWeight="600"
@@ -57,7 +71,7 @@ const ProfilePage = () => {
       >
         {loggedUser.firstName} {loggedUser.lastName}'s Profile
       </Text>
-      <form onSubmit={"handleSubmit"}>
+      <form onSubmit={handleSubmit}>
         <VStack px={10}>
           <List fontSize="md" spacing={3}>
             <Flex minWidth="max-content" alignItems="center">
@@ -69,7 +83,8 @@ const ProfilePage = () => {
                   color="green.500"
                   onClick={() => setTitleHidden(!titleHidden)}
                 />
-                My title
+                {console.log(jobTitle)}
+                {jobTitle === "Data%20Engineer" ? "Data Engineer" : "My title"}
               </ListItem>
             </Flex>
             <FormControl hidden={titleHidden}>
@@ -87,7 +102,8 @@ const ProfilePage = () => {
                   color="green.500"
                   onClick={() => setExpLevelHidden(!expLevelHidden)}
                 />
-                My level{loggedUser.expLevel}
+                {console.log(expLevel)}
+                {expLevel ? expLevel : "My level"}
               </ListItem>
             </Flex>
             <FormControl hidden={expLevelHidden}>
@@ -97,10 +113,10 @@ const ProfilePage = () => {
                 defaultValue={loggedUser.expLevel}
                 onChange={(e) => setExpLevel(e.target.value)}
               >
-                <option value="EN">Junior</option>
-                <option value="MI">Intermediate</option>
-                <option value="SE">Senior</option>
-                <option value="EX">Executive</option>
+                <option value="Junior">Junior</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Senior">Senior</option>
+                <option value="Executive">Executive</option>
               </Form.Select>
             </FormControl>
 
@@ -116,8 +132,8 @@ const ProfilePage = () => {
                   onClick={() => setCompanyLocHidden(!companyLocHidden)}
                   defaultValue={loggedUser.companyLocation}
                 />
-                My company location
-                {loggedUser.companyLocation}
+                {console.log(companyLocation)}
+                {companyLocation === "TH" ? "Thailand" : "My company location"}
               </ListItem>
             </Flex>
             <FormControl hidden={companyLocHidden}>
@@ -135,8 +151,12 @@ const ProfilePage = () => {
                   color="green.500"
                   onClick={() => setCompanySizeHidden(!companySizeHidden)}
                 />
-                My company size
-                {loggedUser.companySize}
+                {console.log(companySize)}
+                {companySize === "S"
+                  ? "Less than 50 employees"
+                  : "My company size"}
+                {/* My company size */}
+                {/* {loggedUser.companySize} */}
               </ListItem>
             </Flex>
             <FormControl hidden={companySizeHidden}>
@@ -164,8 +184,10 @@ const ProfilePage = () => {
                   color="green.500"
                   onClick={() => setEmployTypeHidden(!employTypeHidden)}
                 />
-                My employment type
-                {loggedUser.empType}
+                {console.log(employType)}
+                {employType === "PT" ? "Part-time" : "My employment type"}
+                {/* My employment type
+                {loggedUser.empType} */}
               </ListItem>
             </Flex>
             <FormControl hidden={employTypeHidden}>
@@ -193,8 +215,12 @@ const ProfilePage = () => {
                   color="green.500"
                   onClick={() => setRemoteRatioHidden(!remoteRatioHidden)}
                 />
-                My remote work ratio
-                {loggedUser.remoteWorkRatio}
+                {console.log(remoteRatio)}
+                {remoteRatio === "100"
+                  ? "Fully remote (more than 80%)"
+                  : "My remote work ratio"}
+                {/* My remote work ratio
+                {loggedUser.remoteWorkRatio} */}
               </ListItem>
             </Flex>
             <FormControl hidden={remoteRatioHidden}>
@@ -239,7 +265,7 @@ const ProfilePage = () => {
             </FormControl>
           </List>
           <Spacer />
-          <Button color="white" bg="#3D8361" type="submit">
+          <Button color="white" bg="#3D8361" type="submit" mb={33}>
             Update
           </Button>
         </VStack>
