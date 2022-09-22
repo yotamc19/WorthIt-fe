@@ -1,13 +1,13 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 import Post from "../components/Post";
 import { useBigContext } from "../contexts/BigContexts";
 
 const NotificationsPage = () => {
     const { postsList, setPostsList } = useBigContext();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         const getAllPosts = async () => {
@@ -18,11 +18,7 @@ const NotificationsPage = () => {
         }
         getAllPosts()
             .catch((err) => { console.log(err) });
-    }, []);
-
-    const handlePostClick = () => {
-        navigate('/post');
-    }
+    }, [setPostsList]);
 
     return (
         <div>

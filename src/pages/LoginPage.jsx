@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -44,8 +44,8 @@ const LoginPage = () => {
         });
         setIsLoggedIn(true);
         setLoggedUser(data);
-        setIsAdmin(data.isAdmin)
-        navigate("/home")
+        setIsAdmin(data.isAdmin);
+        navigate("/home");
       }
     } catch (error) {
       console.log(error);
@@ -77,6 +77,7 @@ const LoginPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="email"
               type="email"
@@ -87,6 +88,7 @@ const LoginPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="password"
               type="password"

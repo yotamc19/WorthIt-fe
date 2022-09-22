@@ -10,7 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useBigContext } from "../contexts/BigContexts";
 
@@ -31,7 +31,8 @@ const SignupPage = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:8080/user/signup",
-        userInfo, {
+        userInfo,
+        {
           withCredentials: true,
         }
       );
@@ -42,7 +43,7 @@ const SignupPage = () => {
           status: "success",
           duration: 1500,
           isClosable: true,
-        })
+        });
         setIsLoggedIn(true);
         setLoggedUser(data);
         navigate("/home");
@@ -55,9 +56,10 @@ const SignupPage = () => {
     <div>
       <form onSubmit={handleSignUp}>
         <Text
+          mt={-2}
           className="main-title"
           fontWeight="600"
-          mb={5}
+          mb={2}
           textAlign="center"
           fontSize="3xl"
         >
@@ -70,13 +72,13 @@ const SignupPage = () => {
           px={10}
           py={5}
           bg="#D6CDA4"
-          gap={1}
           mx="auto"
           mb={3}
         >
           <FormControl isRequired>
             <FormLabel htmlFor="firstName">First Name:</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="firstName"
               type="text"
@@ -87,6 +89,7 @@ const SignupPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="lastName">Last Name:</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="lastName"
               type="text"
@@ -97,6 +100,7 @@ const SignupPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="email">Email:</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="email"
               type="email"
@@ -107,6 +111,7 @@ const SignupPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="password">Password:</FormLabel>
             <Input
+              height={8}
               bg="white"
               id="password"
               type="password"
@@ -117,6 +122,8 @@ const SignupPage = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="confirmPassword">Confirm password:</FormLabel>
             <Input
+              mb={3}
+              height={8}
               bg="white"
               id="repassword"
               type="password"
@@ -124,7 +131,7 @@ const SignupPage = () => {
               onChange={handleTextChange}
             />
           </FormControl>
-          <HStack width="100%" mt={5}>
+          <HStack width="100%">
             <Spacer />
             <Button color="white" bg="#3D8361" type="submit">
               Submit
@@ -132,6 +139,13 @@ const SignupPage = () => {
           </HStack>
         </VStack>
       </form>
+      <Text textAlign="center">
+        Already a user? Click
+        <strong>
+          <Link to={"/"}> here </Link>
+        </strong>
+        to log in.
+      </Text>
     </div>
   );
 };
