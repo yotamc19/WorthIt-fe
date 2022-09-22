@@ -1,7 +1,7 @@
-import { Circle, Toast, useDisclosure, useToast } from "@chakra-ui/react";
+import { Circle, useDisclosure, useToast } from "@chakra-ui/react";
 import { PlusSquareIcon } from '@chakra-ui/icons'
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
-import { Button, Flex, FormControl, FormLabel, HStack, Input, Spacer, Text, Textarea, VStack } from "@chakra-ui/react";
+import { Modal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import { useBigContext } from "../contexts/BigContexts";
