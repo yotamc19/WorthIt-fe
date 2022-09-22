@@ -1,10 +1,13 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Post from "../components/Post";
 import { useBigContext } from "../contexts/BigContexts";
 
 const NotificationsPage = () => {
     const { postsList, setPostsList } = useBigContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getAllPosts = async () => {
@@ -16,6 +19,10 @@ const NotificationsPage = () => {
         getAllPosts()
             .catch((err) => { console.log(err) });
     }, []);
+
+    const handlePostClick = () => {
+        navigate('/post');
+    }
 
     return (
         <div>
@@ -29,29 +36,8 @@ const NotificationsPage = () => {
                 Feed
             </Text>
             {postsList.map(post => {
-                const current = new Date();
-                const d = new Date(post.createdAt);
-                const days = (current.getTime() - d.getTime()) / (1000 * 60 * 60 * 24);
                 return (
-                    <Box
-                        key={post._id}
-                        className='post'
-                        maxWidth="75%"
-                        boxShadow="md"
-                        rounded="lg"
-                        px={3}
-                        py={3}
-                        bg="#D6CDA4"
-                        gap={2}
-                        mx="auto"
-                        mb={3}
-                    >
-                        <Box display='flex' justifyContent='space-between'>
-                            <Text fontSize='2xl' fontWeight='700' noOfLines={1}>{post.heading}</Text>
-                            <Text fontSize='xs'>{days < 1 ? 'Today' : `${days.floor()} days ago`}</Text>
-                        </Box>
-                        <Text fontSize='md' noOfLines={3}>{post.text}</Text>
-                    </Box>
+                    <Post key={post._id} postId={post._id} heading={post.heading} text={post.text} createdDate={post.createdAt} />
                 )
             })}
         </div>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabList, Tab } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaBell,
@@ -10,6 +10,12 @@ import {
 } from "react-icons/fa";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/home');
+  }, [])
+
   return (
     <>
       <Tabs bg="white" w="100%" bottom="0" position="fixed" isFitted variant="enclosed">

@@ -13,10 +13,10 @@ import WorthItBanner from "./components/WorthItBanner";
 import { useBigContext } from "./contexts/BigContexts";
 import { useEffect } from "react";
 import axios from "axios";
-import PostPage from "./pages/PostPage";
 import AdminPrivateRoute from './components/AdminPrivateRoute';
 import PostBubble from "./components/PostBubble";
 import SalaryCalculator from "./pages/SalaryCalculator";
+import PostPage from "./pages/PostPage";
 
 const App = () => {
   const { isLoggedIn, setLoggedUser, setIsLoggedIn, isAdmin, setIsAdmin } = useBigContext();
@@ -52,13 +52,11 @@ const App = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/calculator" element={<SalaryCalculator/>} />
+            <Route path="/calculator" element={<SalaryCalculator />} />
             <Route path="/mySalary" element={<MySalaryPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route element={<AdminPrivateRoute />}>
-              <Route path='/upload' element={<PostPage />} />
-            </Route>
+            <Route path="/post/:postId" element={<PostPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
