@@ -19,7 +19,7 @@ const SalaryCalculator = () => {
   const [jobLocation, setJobLocation] = useState({});
   const [companySize, setCompanySize] = useState("");
   const [employType, setEmployType] = useState("");
-  const [remoteRatio, setRemoteRatio] = useState(50);
+  const [remoteRatio, setRemoteRatio] = useState("");
 
   const getJobLocation = (selectedOption) => {
     if (selectedOption !== null) setJobLocation(selectedOption.value);
@@ -123,7 +123,7 @@ const SalaryCalculator = () => {
               mb={1}
               bg="white"
               aria-label="company size"
-              value={parseInt(remoteRatio)}
+              value={remoteRatio}
               onChange={(e) => setRemoteRatio(e.target.value)}
             >
               <option></option>

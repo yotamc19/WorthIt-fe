@@ -28,3 +28,17 @@ body,
 .post {
   max-height: 150px;
 }
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.css-tj5bde-Svg {
+  fill:black !important;
+  opacity: .75;
+  width: 85%
+}
+
+.css-1s2u09g-control {
+  border-color: #dedede !important;
+}
